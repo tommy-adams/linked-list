@@ -12,8 +12,6 @@ HEADERS += \
 
 SOURCES += \
         main.cpp
-SOURCES += \
-        linked-list.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

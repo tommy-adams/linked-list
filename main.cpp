@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  LinkedList<int> newList = LinkedList<int>();
+  LinkedList<int> newList;
 
   int i = 1;
   newList.addFront(i);
