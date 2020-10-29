@@ -84,6 +84,35 @@ public:
         _size++;
     }
 
+    // insert data into the linked list at index
+    void insert(T value, int index) {
+        ListNode<T> *curr = _front;
+        ListNode<T> *prev = nullptr;
+
+        // if list is empty, just add the value to the front
+        if (curr == nullptr) {
+            addFront(value);
+            return;
+        }
+
+        // if user wants to add at index of size, this will be after the current last node, so just add to the back
+        if (_size == index) {
+            addBack(value);
+            return;
+        }
+
+        for (int i = 0; i < index; i++) {
+            prev = curr;
+            curr = curr->next;
+        }
+
+        ListNode<T> *newNode = new ListNode<T>(value);
+        prev->next = newNode;
+        newNode->prev = prev;
+        newNode->next = curr;
+        curr->prev = newNode;
+    }
+
     // remove the node at the front
     void removeFront() {
         ListNode<T> *temp = _front->next;
