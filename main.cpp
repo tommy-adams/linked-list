@@ -28,5 +28,8 @@ int main() {
       cout << "List is not empty." << endl;
   }
 
+  newList += 3;
+  cout << newList << endl; // should print {3}
+
   return 0;
 }

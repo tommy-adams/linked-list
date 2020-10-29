@@ -161,6 +161,11 @@ public:
         return out;
     }
 
+    // overload the += operator to add a value to the back of the list
+    friend void operator+=(LinkedList &list, T value) {
+        list.addBack(value);
+    }
+
 private:
   ListNode<T> *_front; // pointer to the location of the front node
   ListNode<T> *_back; // pointer to the location of the back node
