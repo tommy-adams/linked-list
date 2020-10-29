@@ -29,7 +29,19 @@ int main() {
   }
 
   newList += 3;
-  cout << newList << endl; // should print {3}
+  newList += 5;
+  newList += 11;
+  newList += 2;
+  cout << newList << endl; // should print {3, 5, 11, 2}
+
+  newList -= 5;
+  cout << newList << endl; // should print {3, 11, 2}
+
+  newList--;
+  cout << newList << endl; // should print {3, 11}
+
+  --newList;
+  cout << newList << endl; // should print {11}
 
   return 0;
 }

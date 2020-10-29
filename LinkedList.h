@@ -22,6 +22,7 @@ public:
     LinkedList() {
         _front = nullptr;
         _back = nullptr;
+        _size = 0;
     }
 
     // LinkedList destructor
@@ -44,6 +45,11 @@ public:
         return _front->data;
     }
 
+    // get number of nodes in linked list
+    int size() {
+        return _size;
+    }
+
     // add a data value to the front of the list
     void addFront(T value) {
         ListNode<T> *newNode = new ListNode<T>(value);
@@ -58,6 +64,7 @@ public:
         }
 
         _front = newNode; // the new node is the new front
+        _size++;
     }
 
     // add a data value to the back of the list
@@ -74,6 +81,7 @@ public:
         }
 
         _back = newNode; // the new node is the new back
+        _size++;
     }
 
     // remove the node at the front
@@ -89,6 +97,7 @@ public:
         }
 
         _front->prev = nullptr; // there is no value previous to the front
+        _size--;
     }
 
     // remove the first instance of the value in the list
@@ -124,6 +133,7 @@ public:
         }
         nextNode->prev = prev;
         delete curr; // release the memory back to the heap
+        _size--;
     }
 
     // remove the value at the back of the list
@@ -139,6 +149,7 @@ public:
         }
 
         _back->next = nullptr;
+        _size--;
     }
 
     // return true if there are no nodes in the list
@@ -166,7 +177,25 @@ public:
         list.addBack(value);
     }
 
+    // overload the -= operator to remove the first node with a certain value
+    friend void operator-=(LinkedList &list, T value) {
+        list.removeValue(value);
+    }
+
+    // overload the -- operator to remove the last node in the list
+    friend LinkedList<T> &operator--(LinkedList &list, int) {
+        list.removeBack();
+        return list;
+    }
+
+    // overload the -- operator to remove the first node in the list
+    friend LinkedList<T> &operator--(LinkedList &list) {
+        list.removeFront();
+        return list;
+    }
+
 private:
   ListNode<T> *_front; // pointer to the location of the front node
   ListNode<T> *_back; // pointer to the location of the back node
+  int _size;
 };
