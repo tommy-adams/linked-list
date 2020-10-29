@@ -5,11 +5,10 @@
 using namespace std;
 
 int main() {
-  LinkedList newList = LinkedList();
+  LinkedList<int> newList = LinkedList<int>();
 
-  string stringVal = "string";
-  void *value = &stringVal;
-  newList.addFront(value);
+  int i = 1;
+  newList.addFront(i);
   cout << newList << endl;
 
   return 0;

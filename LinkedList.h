@@ -1,30 +1,33 @@
 #pragma once
 #include <ostream>
 
+template <typename T>
 struct ListNode {
-  void *data;
+  T data;
   ListNode *next;
   ListNode *prev;
-  ListNode(void *value) {
+
+  ListNode(T value) {
     data = value;
     next = nullptr;
     prev = nullptr;
   }
 };
 
+template <typename T>
 class LinkedList {
 public:
   LinkedList();
   ~LinkedList();
-  void addFront(void *value);
-  void addBack(void *value);
+  void addFront(T value);
+  void addBack(T value);
   void removeFront();
-  void removeValue(void *value);
+  void removeValue(T value);
   void removeBack();
   bool isEmpty();
   friend std::ostream &operator<<(std::ostream &out, LinkedList &list);
 
 private:
-  ListNode *_front;
-  ListNode *_back;
+  ListNode<T> *_front;
+  ListNode<T> *_back;
 };

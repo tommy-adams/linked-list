@@ -1,39 +1,45 @@
 #include "LinkedList.h"
 
-LinkedList::LinkedList() {
+template <typename T>
+LinkedList<T>::LinkedList() {
   _front = nullptr;
   _back = nullptr;
 }
 
-LinkedList::~LinkedList() {
+template <typename T>
+LinkedList<T>::~LinkedList() {
   while (_front != nullptr) {
-    ListNode *temp = _front->next;
+    ListNode<T> *temp = _front->next;
     delete _front;
     _front = temp;
   }
 }
 
-void LinkedList::addFront(void *value) {
-  ListNode *newNode = new ListNode(value);
+template <typename T>
+void LinkedList<T>::addFront(T value) {
+  ListNode<T> *newNode = new ListNode<T>(value);
   newNode->next = _front;
   _front = newNode;
 }
 
-void LinkedList::addBack(void *value) {
-  ListNode *newNode = new ListNode(value);
+template <typename T>
+void LinkedList<T>::addBack(T value) {
+  ListNode<T> *newNode = new ListNode<T>(value);
   newNode->prev = _back;
   _back = newNode;
 }
 
-void LinkedList::removeFront() {
-  ListNode *temp = _front->next;
+template <typename T>
+void LinkedList<T>::removeFront() {
+  ListNode<T> *temp = _front->next;
   delete _front;
   _front = temp;
 }
 
-void LinkedList::removeValue(void *value) {
-  ListNode *prev = nullptr;
-  ListNode *curr = _front;
+template <typename T>
+void LinkedList<T>::removeValue(T value) {
+  ListNode<T> *prev = nullptr;
+  ListNode<T> *curr = _front;
 
   if (_front == nullptr) {
     return;
@@ -51,27 +57,30 @@ void LinkedList::removeValue(void *value) {
     return;
   }
 
-  ListNode *nextNode = curr->next;
+  ListNode<T> *nextNode = curr->next;
   prev->next = nextNode;
   nextNode->prev = prev;
   delete curr;
 }
 
-void LinkedList::removeBack() {
-  ListNode *temp = _back->prev;
+template <typename T>
+void LinkedList<T>::removeBack() {
+  ListNode<T> *temp = _back->prev;
   delete _back;
   _back = temp;
 }
 
-bool LinkedList::isEmpty() {
+template <typename T>
+bool LinkedList<T>::isEmpty() {
   return _front == nullptr;
 }
 
-std::ostream &operator<<(std::ostream &out, LinkedList &list) {
+template <typename T>
+std::ostream &operator<<(std::ostream &out, LinkedList<T> &list) {
     out << "{";
     if (!list.isEmpty()) {
         out << list._front->data;
-        ListNode *curr = list._front->next;
+        ListNode<T> *curr = list._front->next;
         while (curr != nullptr) {
             out << ", " << curr->data;
             curr = curr->next;
